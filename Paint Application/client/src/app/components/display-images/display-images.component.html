@@ -1,0 +1,138 @@
+<h1 mat-dialog-title>Carousel de Dessin</h1>
+<div class="fullContainer">
+    <mat-label>Entrer le nom des tags (aucun espace dans les tags): </mat-label>
+
+    <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipListCarousel>
+            <mat-chip
+                *ngFor="let tag of data.tagsCarousel"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(tag)"
+                [ngStyle]="
+                    tag.isValidTagCarousel(carouselService.validTagArray) ? { 'background-color': 'lightgray' } : { 'background-color': 'red' }
+                "
+            >
+                {{ tag.tagName }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                <mat-error
+                    *ngIf="!tag.isValidTagCarousel(carouselService.validTagArray)"
+                    [ngStyle]="{ color: 'black', 'font-size': '12px', 'font-weight': 'bold' }"
+                    >Ce tag est introuvable!</mat-error
+                >
+            </mat-chip>
+
+            <input
+                classe="chip-list"
+                placeholder="New tag..."
+                [matChipInputFor]="chipListCarousel"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+            />
+        </mat-chip-list>
+    </mat-form-field>
+    <div mat-dialog-content class="diplayCarousel">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title> Dessin 1:</mat-card-title>
+                <mat-card-title *ngIf="carouselService.card1Title">{{
+                    carouselService.arrayImageTagFilter[carouselService.arrayCarousel[0]]?.title
+                }}</mat-card-title>
+                <mat-card-title *ngIf="!carouselService.card1Title"> Aucune Image </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <canvas #canvas0 (click)="chargerImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[0]]?.data)">
+                    {{ displayImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[0]]?.data, 0) }}</canvas
+                >
+                <mat-card-title> Tags:</mat-card-title>
+                <div
+                    classe="tags"
+                    *ngFor="let tag of carouselService.arrayImageTagFilter[carouselService.arrayCarousel[0]]?.tags"
+                    style="color: black; display: inline-block; padding-left: 10px"
+                >
+                    {{ tag }}
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div mat-dialog-actions class="buttonDelete">
+                    <button mat-button (click)="deleteImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[0]])">Delete</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title> Dessin 2:</mat-card-title>
+                <mat-card-title *ngIf="carouselService.card2Title">{{
+                    carouselService.arrayImageTagFilter[carouselService.arrayCarousel[1]]?.title
+                }}</mat-card-title>
+                <mat-card-title *ngIf="!carouselService.card2Title"> Aucune Image </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content class="card2">
+                <canvas #canvas1 (click)="chargerImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[1]]?.data)">
+                    {{ displayImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[1]]?.data, 1) }}</canvas
+                >
+                <mat-card-title> Tags:</mat-card-title>
+                <div
+                    classe="tags"
+                    *ngFor="let tag of carouselService.arrayImageTagFilter[carouselService.arrayCarousel[1]]?.tags"
+                    style="color: black; display: inline-block; padding-left: 10px"
+                >
+                    {{ tag }}
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div mat-dialog-actions class="buttonDelete">
+                    <button mat-button (click)="deleteImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[1]])">Delete</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title> Dessin 3:</mat-card-title>
+                <mat-card-title *ngIf="carouselService.card3Title">{{
+                    carouselService.arrayImageTagFilter[carouselService.arrayCarousel[2]]?.title
+                }}</mat-card-title>
+                <mat-card-title *ngIf="!carouselService.card3Title"> Aucune Image </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <canvas #canvas2 (click)="chargerImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[2]]?.data)">{{
+                    displayImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[2]]?.data, 2)
+                }}</canvas>
+                <mat-card-title> Tags:</mat-card-title>
+                <div
+                    classe="tags"
+                    *ngFor="let tag of carouselService.arrayImageTagFilter[carouselService.arrayCarousel[2]]?.tags"
+                    style="color: black; display: inline-block; padding-left: 10px"
+                >
+                    {{ tag }}
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div mat-dialog-actions class="buttonDelete">
+                    <button mat-button (click)="deleteImage(carouselService.arrayImageTagFilter[carouselService.arrayCarousel[2]])">Delete</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div mat-dialog-content>
+        <mat-card-actions>
+            <div mat-dialog-actions class="bottomDisplay">
+                <button mat-button (click)="carouselService.reculerCarousel()">PREVIEW</button>
+                <button mat-button (click)="carouselService.avancerCarousel()">NEXT</button>
+            </div>
+        </mat-card-actions>
+    </div>
+
+    <div mat-dialog-content>
+        <div mat-dialog-actions class="bottomDisplay">
+            <button mat-button (click)="onCancel()">Annuler</button>
+        </div>
+    </div>
+</div>

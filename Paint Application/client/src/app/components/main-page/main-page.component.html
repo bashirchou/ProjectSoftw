@@ -1,0 +1,12 @@
+<div class="container">
+    <h1 class="header-item">{{ title }}</h1>
+
+    <button class="button" (click)="newDraw()">{{ newOption }}</button>
+    <button class="button" (click)="openDrawingSet()">{{ openOption }}</button>
+    <button class="button" [disabled]="!this.disabled" (click)="this.continueDraw()">{{ continueOption }}</button>
+
+    <div class="footer-item">
+        <h4 class="team-name">Équipe Poly</h4>
+        <p>Ayoub Kolai, Dawut Esse, Labib Bashir-Choudhury,Philippe Bonhomme, Raphael St-Jean</p>
+    </div>
+</div>

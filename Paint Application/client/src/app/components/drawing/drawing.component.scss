@@ -1,0 +1,50 @@
+canvas {
+    border: 2px solid #000000;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.eraserCursor {
+    cursor: url('../../../assets/eraser_cursor.svg'), auto;
+}
+.noCursor {
+    cursor: none;
+}
+.normalCursor {
+    cursor: crosshair;
+}
+
+.rightResizeCursor {
+    cursor: e-resize;
+}
+.buttonResizeCursor {
+    cursor: s-resize;
+}
+
+.cornerCursor {
+    cursor: se-resize;
+}
+#previewLayer {
+    background-color: rgba($color: #ffff, $alpha: 0);
+}
+#resizePreview {
+    z-index: 2;
+    background-color: rgba($color: #ffff, $alpha: 0);
+    border: none;
+    position: relative;
+}
+
+#canvas {
+    z-index: 0;
+    background-color: rgba($color: #ffff, $alpha: 1);
+}
+
+#drawCanvas {
+    z-index: 1;
+}
+
+#canvas-container {
+    position: relative;
+    background-image: url('/assets/imageSky2.jpg');
+    background-size: 100% 100%;
+}

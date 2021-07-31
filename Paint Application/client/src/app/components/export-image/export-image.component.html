@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Exporter votre dessin</h1>
+<div mat-dialog-content>
+    <mat-label>Entrer le nom de votre dessins a exporter</mat-label>
+    <mat-form-field>
+        <mat-label>Nom du dessin</mat-label>
+        <input matInput [(ngModel)]="name" (ngModelChange)="validName = name != ''" />
+    </mat-form-field>
+    <canvas #previewCanvas></canvas>
+    <mat-form-field appearance="fill">
+        <mat-label>Image format</mat-label>
+        <mat-select [(value)]="type">
+            <mat-option [value]="0">PNG</mat-option>
+            <mat-option [value]="1">JPEG</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Filtre</mat-label>
+        <mat-select [(value)]="filter">
+            <mat-option [value]="1">Noir et blanc</mat-option>
+            <mat-option [value]="2">Sépia</mat-option>
+            <mat-option [value]="3">Saturaté</mat-option>
+            <mat-option [value]="4">Éclairé</mat-option>
+            <mat-option [value]="5">Emmbrouillis</mat-option>
+            <mat-option [value]="6">Aucun Filtre</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="filterChoice()">Appliquer filtre</button>
+</div>
+
+<div mat-dialog-actions>
+    <div class="action">
+        <button mat-button cdkFocusInitial [disabled]="!validName" (click)="onConfirmImgur()">Exporter sur Imgur</button>
+        <button mat-button cdkFocusInitial [disabled]="!validName" (click)="onConfirm()">Exportation</button>
+    </div>
+
+    <button mat-button (click)="onCancel()">Annuler</button>
+</div>
+.

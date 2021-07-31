@@ -1,0 +1,33 @@
+.diplayCarousel {
+    display: flex;
+}
+
+.chip-list {
+    display: inline;
+    justify-content: space-between;
+}
+
+.example-chip-list {
+    width: 50%;
+    height: 80%;
+}
+
+.example-card {
+    margin: 5px;
+    width: 400px;
+    height: 400px;
+}
+
+.buttonDelete {
+    border: 4px solid black;
+    margin: 50px;
+    padding: 0;
+    align-items: bottom;
+    justify-content: center;
+}
+
+.bottomDisplay {
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}

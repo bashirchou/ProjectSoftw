@@ -1,0 +1,26 @@
+canvas {
+    background-color: rgba(0, 0, 0, 0);
+}
+h1 {
+    text-align: center;
+}
+mat-slider {
+    width: 70%;
+}
+.example-margin {
+    margin: 0 10px;
+}
+.buttonFormat {
+    margin-left: -20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.buttonColor {
+    background: linear-gradient(to right, #9c9e9f 0%, #9c9e9f 50%, #f6f6f6 50%, #f6f6f6 100%);
+}
+
+.white-icon {
+    color: white;
+}

@@ -1,0 +1,13 @@
+<button
+    mat-mini-fab
+    color="primary"
+    matTooltip="{{ toolsControllerService.getTool(toolSelector).name }} shortcut: {{ toolsControllerService.getTool(toolSelector).shortcut }}"
+    (click)="onClick()"
+    [ngClass]="{ selected: toolsControllerService.isCurrentTool(toolSelector) }"
+>
+    <mat-icon *ngIf="!toolsControllerService.getTool(toolSelector).custumIcon">{{ toolsControllerService.getTool(toolSelector).icon }}</mat-icon>
+    <mat-icon
+        *ngIf="toolsControllerService.getTool(toolSelector).custumIcon"
+        [svgIcon]="toolsControllerService.getTool(toolSelector).icon"
+    ></mat-icon>
+</button>

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="utility-container">
+        <div class="tool-container">
+            <app-sidebar></app-sidebar>
+            <app-attribut-pane></app-attribut-pane>
+        </div>
+        <div class="command-container">
+            <button mat-icon-button color="black" (click)="undo()" matTooltip="Undo ({{ ApplicationShortcut.undo }})">
+                <mat-icon>undo</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                color="black"
+                (click)="redo()"
+                [disabled]="undoRedoService.redoHistory.length == 0"
+                matTooltip="redo ({{ ApplicationShortcut.redo }})"
+            >
+                <mat-icon>redo</mat-icon>
+            </button>
+            <button mat-icon-button color="black" (click)="openSaveDrawDialog()" matTooltip="Save ({{ ApplicationShortcut.save }})">
+                <mat-icon> save</mat-icon>
+            </button>
+            <button mat-icon-button color="black" (click)="openNewDrawDialog()" matTooltip="Nouveau dessin ({{ ApplicationShortcut.newDraw }})">
+                <mat-icon> add</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                color="black"
+                (click)="openExportImageDialog()"
+                matTooltip="Exporter le dessin ({{ ApplicationShortcut.exportDraw }})"
+            >
+                <mat-icon>get_app </mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                color="black"
+                (click)="openDialogCarousel()"
+                matTooltip="Ouvrir le carrousel de dessins ({{ ApplicationShortcut.carousel }})"
+            >
+                <mat-icon> inbox </mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="working-zone">
+        <app-drawing class="drawing" tabindex="0"></app-drawing>
+    </div>
+</div>

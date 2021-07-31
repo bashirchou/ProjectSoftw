@@ -1,0 +1,130 @@
+<div class="mainContainer">
+    <div>
+        <div class="canvas-pane">
+            <div>
+                <canvas
+                    (mouseup)="mouseUpSlider($event)"
+                    (mousedown)="mouseDownSlider($event)"
+                    (mousemove)="mouseMoveSlider($event)"
+                    #slider
+                    class="color-slider"
+                    width="55"
+                    height="250"
+                >
+                </canvas>
+            </div>
+            <div style="margin-right: 10px">
+                <canvas
+                    (mouseup)="mouseUpPicker($event)"
+                    (mousedown)="mouseDownPicker($event)"
+                    (mousemove)="mouseMovePicker($event)"
+                    #picker
+                    class="color-slider"
+                    width="250"
+                    height="250"
+                >
+                </canvas>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="texte">Couleur apercu</p>
+            <div class="apercu" [ngStyle]="{ 'background-color': this.RBGA }" (contextmenu)="blocContext($event)"></div>
+            <div>Hexadecimal : "{{ rgbToHex(this.red, this.green, this.blue) }} "</div>
+        </div>
+
+        <div class="inline">
+            <div class="container divide">
+                <div
+                    (mousedown)="this.primaryClicked = true"
+                    class="apercu"
+                    [ngStyle]="{ 'background-color': this.drawingService.primaryColor }"
+                    (contextmenu)="blocContext($event)"
+                ></div>
+                <div>Hexadecimal 1 : "{{ this.couleurPrincipale.hex }} "</div>
+            </div>
+
+            <div class="container divide">
+                <div
+                    (mousedown)="this.primaryClicked = false"
+                    class="apercu"
+                    [ngStyle]="{
+                        'background-color': this.drawingService.secondaryColor,
+                        'border-style': !this.primaryClicked ? 'dotted' : 'none'
+                    }"
+                    (contextmenu)="blocContext($event)"
+                ></div>
+                <div>Hexadecimal 2 : "{{ this.couleurSecondaire.hex }} "</div>
+            </div>
+        </div>
+
+        <button id="swapColor()" class="bouton" (mousedown)="swapColor()" mat-flat-button color="primary">Échanger couleur</button>
+        <br />
+        <br />
+    </div>
+
+    <div>
+        <dl class="table">
+            <div class="inline">
+                <dt class="table-title">Red:</dt>
+                <div class="fieldContainer">
+                    <mat-label>0</mat-label>
+                    <mat-slider thumbLabel (change)="changeInput()" [(ngModel)]="red" tickInterval="1" min="0" max="255"></mat-slider>
+                    <mat-label>255</mat-label>
+                    <mat-label> Valeur: {{ red }}</mat-label>
+                </div>
+            </div>
+
+            <div class="inline">
+                <dt class="table-title">Green</dt>
+                <div class="fieldContainer">
+                    <mat-label>0</mat-label>
+                    <mat-slider thumbLabel (change)="changeInput()" [(ngModel)]="green" tickInterval="1" min="0" max="255"></mat-slider>
+                    <mat-label>255</mat-label>
+                    <mat-label> Valeur: {{ green }}</mat-label>
+                </div>
+            </div>
+
+            <div class="inline">
+                <dt class="table-title">Blue</dt>
+                <div class="fieldContainer">
+                    <mat-label>0</mat-label>
+                    <mat-slider thumbLabel (change)="changeInput()" [(ngModel)]="blue" tickInterval="1" min="0" max="255"></mat-slider>
+                    <mat-label>255</mat-label>
+                    <mat-label> Valeur: {{ blue }}</mat-label>
+                </div>
+            </div>
+
+            <div class="inline">
+                <dt class="table-title">Alpha</dt>
+                <div class="fieldContainer">
+                    <mat-label>0</mat-label>
+                    <mat-slider
+                        thumbLabel
+                        [displayWith]="formatLabel"
+                        (change)="changeInput()"
+                        [(ngModel)]="alpha"
+                        tickInterval="1"
+                        min="0"
+                        max="100"
+                    ></mat-slider>
+                    <mat-label>1</mat-label>
+                    <mat-label> Valeur: {{ alpha / 100 }}</mat-label>
+                </div>
+            </div>
+        </dl>
+
+        <div class="containerColorTable">
+            <div
+                class="colorTableContainer"
+                *ngFor="let position of tabColor; let i = index"
+                [ngStyle]="{ 'background-color': position.color }"
+                (mousedown)="changeColorTest($event, position)"
+                (contextmenu)="blocContext($event)"
+            ></div>
+        </div>
+        <div mat-dialog-actions class="close">
+            <button mat-button mat-dialog-close>Fermer la fenêtre</button>
+        </div>
+    </div>
+</div>

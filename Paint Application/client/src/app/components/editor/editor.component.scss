@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    background-color: lightgrey;
+    height: 100%;
+}
+.utility-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: rgb(10, 181, 248);
+}
+
+.tool-container {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(to right, rgb(0, 225, 255), #003cff);
+    height: 95%;
+}
+
+.working-zone {
+    background-color: rgb(231, 251, 255);
+    flex: 5;
+}
+.command-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.drawing {
+    outline: none;
+}

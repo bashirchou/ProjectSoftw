@@ -1,0 +1,279 @@
+<p>L'outil actuel est {{ toolsController.currentTool.name }}</p>
+<div
+    appearance="fill"
+    *ngIf="
+        toolsController.currentToolSelector != ToolSelector.Pipette &&
+        toolsController.currentToolSelector != ToolSelector.Selector &&
+        toolsController.currentToolSelector != ToolSelector.Aerosol &&
+        toolsController.currentToolSelector != ToolSelector.PaintingBucket &&
+        toolsController.currentToolSelector != ToolSelector.Etampe
+    "
+>
+    <mat-label>Taille de l'outil en pixel: {{ toolsController.currentTool.thickness }} px</mat-label>
+    <mat-slider
+        color="primary"
+        thumbLabel
+        [displayWith]="formatLabelNumber"
+        tickInterval="auto"
+        min="{{ minThickness }}"
+        max="{{ maxThickness }}"
+        [(ngModel)]="toolsController.currentTool.thickness"
+    ></mat-slider>
+</div>
+<div appearance="fill" *ngIf="toolsController.currentTool.groupSelector === GroupSelector.Shape">
+    <mat-label>Select le type de contours: {{ getShape().toString() }}</mat-label>
+    <mat-slider
+        color="primary"
+        thumbLabel
+        [displayWith]="Shape.shapeToString"
+        tickInterval="auto"
+        min="0"
+        max="2"
+        [(ngModel)]="getShape().shapeType"
+    ></mat-slider>
+</div>
+<div appearance="fill" *ngIf="toolsController.currentToolSelector === ToolSelector.Polygone">
+    <mat-label>Nombre de cotés du polygone: {{ getPolygon().polygonType + 3 }}</mat-label>
+    <mat-slider
+        color="primary"
+        thumbLabel
+        [displayWith]="getPolygon().polygoneToString"
+        tickInterval="1"
+        min="0"
+        max="9"
+        [(ngModel)]="getPolygon().polygonType"
+    ></mat-slider>
+</div>
+<div appearance="fill" *ngIf="toolsController.currentToolSelector === ToolSelector.Selector">
+    <mat-label>Methode de selection: {{ getSelector().selectionToString(getSelector().selectorType) }}</mat-label>
+    <mat-form-field appearance="fill">
+        <mat-label>Methode de selection</mat-label>
+        <mat-select [(value)]="getSelector().selectorType">
+            <mat-option [value]="0">Rectangle</mat-option>
+            <mat-option [value]="1">Ellipse</mat-option>
+            <mat-option [value]="2">Selectionner tout</mat-option>
+            <mat-option [value]="3">Lasso Polygonal</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="buttonFormat">
+        <button mat-raised-button color="primary" [disabled]="getSelector().selected === false" (click)="getSelector().copied()">
+            <mat-icon class="white_icon">date_range</mat-icon>Copier
+        </button>
+        <button mat-raised-button color="primary" [disabled]="getSelector().isCopied === false" (click)="getSelector().paste()">
+            <mat-icon class="white_icon">check_circle_outline</mat-icon>Coller
+        </button>
+    </div>
+    <div class="buttonFormat">
+        <button mat-raised-button color="primary" [disabled]="getSelector().selected === false" (click)="getSelector().cut()">
+            <mat-icon class="white_icon">filter_none</mat-icon>Couper
+        </button>
+        <button mat-raised-button color="primary" [disabled]="getSelector().selected === false" (click)="getSelector().delete()">
+            <mat-icon>delete_outline</mat-icon>Supprimer
+        </button>
+    </div>
+</div>
+<div *ngIf="toolsController.currentToolSelector == ToolSelector.Line">
+    <div appearance="fill">
+        <mat-label>Type de jonction: {{ getLine().jonctionTypeToString(getLine().jonctionType) }}</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="getLine().jonctionTypeToString"
+            tickInterval="1"
+            min="0"
+            max="1"
+            [(ngModel)]="getLine().jonctionType"
+        ></mat-slider>
+    </div>
+    <div appearance="fill" *ngIf="getLine().jonctionType == 1">
+        <div appearance="fill">
+            <mat-label>Diamètre des points en pixel: {{ getLine().diameterOfPoints }} px</mat-label>
+            <mat-slider
+                color="primary"
+                thumbLabel
+                [displayWith]="formatLabelNumber"
+                tickInterval="1"
+                min="{{ minDiameter }}"
+                max="{{ maxDiameter }}"
+                [(ngModel)]="getLine().diameterOfPoints"
+            ></mat-slider>
+        </div>
+    </div>
+</div>
+<div *ngIf="toolsController.currentToolSelector == ToolSelector.Aerosol">
+    <div appearance="fill">
+        <mat-label>Nombre d'emission par secondes: {{ getAerosol().emissionPoint }} émission/s</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="formatLabelNumber"
+            tickInterval="1"
+            min="{{ minEmission }}"
+            max="{{ maxEmission }}"
+            [(ngModel)]="getAerosol().emissionPoint"
+        ></mat-slider>
+    </div>
+    <div appearance="fill">
+        <mat-label>Diametre des gouttes: {{ getAerosol().goutteDiameter }} px</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="formatLabelNumber"
+            tickInterval="1"
+            min="{{ minGoutteDiameter }}"
+            max="{{ maxGoutteDiameter }}"
+            [(ngModel)]="getAerosol().goutteDiameter"
+        ></mat-slider>
+    </div>
+    <div appearance="fill">
+        <mat-label>Diametre du jet: {{ getAerosol().jetDiameter }} px</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="formatLabelNumber"
+            tickInterval="1"
+            min="{{ minJetDiameter }}"
+            max="{{ maxJetDiameter }}"
+            [(ngModel)]="getAerosol().jetDiameter"
+        ></mat-slider>
+    </div>
+</div>
+<div *ngIf="toolsController.currentToolSelector == ToolSelector.Texte">
+    <mat-label>Choisissez la taille du texte: {{ getTextService().fontSize }} px</mat-label>
+    <mat-slider
+        color="primary"
+        thumbLabel
+        [displayWith]="formatLabelNumber"
+        tickInterval="4"
+        min="{{ 10 }}"
+        max="{{ getTextService().maxfontSize }}"
+        [(ngModel)]="getTextService().fontSize"
+    ></mat-slider>
+
+    <div appearance="fill">
+        <mat-label> Choisissez la police du texte:</mat-label>
+        <mat-form-field appearance="fill">
+            <mat-label>Police du texte</mat-label>
+            <mat-select [(value)]="getTextService().fontStyle">
+                <mat-option *ngFor="let font of getTextService().fontList" [value]="font">
+                    {{ font }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div appearance="fill">
+        <mat-label>Choisissez le style du texte: </mat-label>
+
+        <mat-button-toggle-group multiple (change)="toggleChange($event, 'italic')" name="toggle_italic">
+            <mat-button-toggle value="italic" aria-label="italic">
+                <mat-icon>format_italic</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <mat-button-toggle-group multiple (change)="toggleChange($event, 'bold')" name="toggle_bold">
+            <mat-button-toggle value="bold" aria-label="bold">
+                <mat-icon>format_bold</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div appearance="fill">
+        <mat-label>Choisissez l'alignement du texte:</mat-label>
+
+        <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="getTextService().textAlign">
+            <mat-button-toggle value="left" aria-label="Text align left">
+                <mat-icon>format_align_left</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="center" aria-label="Text align center">
+                <mat-icon>format_align_center</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="right" aria-label="Text align right">
+                <mat-icon>format_align_right</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+<div *ngIf="toolsController.currentToolSelector == ToolSelector.PaintingBucket">
+    <div appearance="fill">
+        <mat-label>Tolérance de différence entre deux couleur: {{ getBucket().colorTolerance }} %</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="formatLabelNumber"
+            tickInterval="1"
+            min="{{ minColorTolerance }}"
+            max="{{ maxColorTolerance }}"
+            [(ngModel)]="getBucket().colorTolerance"
+        ></mat-slider>
+    </div>
+</div>
+<div *ngIf="toolsController.currentToolSelector == ToolSelector.Etampe">
+    <div appearance="fill">
+        <mat-label>Taille de l'étampe: {{ toolsController.currentTool.thickness }} px</mat-label>
+        <mat-slider
+            color="primary"
+            thumbLabel
+            [displayWith]="formatLabelNumber"
+            tickInterval="1"
+            min="{{ minThickness }}"
+            max="{{ maxThickness }}"
+            [(ngModel)]="toolsController.currentTool.thickness"
+        ></mat-slider>
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Selectionner votre étampe</mat-label>
+        <mat-select [(value)]="getStamp().stampArray">
+            <mat-option [value]="0">HTML</mat-option>
+            <mat-option [value]="1">Gentleman</mat-option>
+            <mat-option [value]="2">Manger</mat-option>
+            <mat-option [value]="3">Laptop</mat-option>
+            <mat-option [value]="4">Enseigné</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div [hidden]="toolsController.currentToolSelector != ToolSelector.Pipette">
+    <h1>Loupe</h1>
+    <canvas #zoomCanvas></canvas>
+</div>
+
+<div appearance="fill">
+    <mat-label>Couleur: </mat-label>
+    <button mat-button (click)="openDialog()" [ngStyle]="setMyStyle()">Outil de couleur</button>
+</div>
+<div appearance="fill">
+    <mat-label>Grille: </mat-label>
+    <mat-checkbox class="example-margin" [(ngModel)]="grid.isGridDraw"></mat-checkbox>
+    <div *ngIf="grid.isGridDraw">
+        <mat-label>Opacité: {{ grid.squareOpacity }}</mat-label>
+        <div class="slider">
+            <span class="text-small">{{ grid.minOpacity }}</span>
+            <mat-slider
+                color="primary"
+                thumbLabel
+                [displayWith]="formatLabelNumber"
+                tickInterval="auto"
+                min="{{ grid.minOpacity }}"
+                max="{{ grid.maxOpacity }}"
+                [(ngModel)]="grid.squareOpacity"
+            ></mat-slider>
+            <span class="text-small">{{ grid.maxOpacity }}</span>
+        </div>
+
+        <div appearance="fill">
+            <mat-label>Taille carré: {{ grid.squareDimensionPixel }} px</mat-label>
+            <mat-slider
+                color="primary"
+                thumbLabel
+                [displayWith]="formatLabelNumber"
+                tickInterval="1"
+                min="{{ grid.minSquareDimensionPixel }}"
+                max="{{ grid.maxSquareDimensionPixel }}"
+                [(ngModel)]="grid.squareDimensionPixel"
+            ></mat-slider>
+        </div>
+    </div>
+</div>

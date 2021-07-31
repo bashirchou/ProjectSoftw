@@ -1,0 +1,22 @@
+<div class="sidebar-container">
+    <div *ngFor="let item of toolsControllerService.items; let i = index">
+        <div *ngIf="item.groupSelector !== GroupSelector.NotAGroup" class="sidebar-element">
+            <button
+                mat-mini-fab
+                class="GroupButton"
+                [matMenuTriggerFor]="menu"
+                matTooltip="{{ item.name }}"
+                [ngClass]="toolsControllerService.isCurrentToolInGroup(i) ? 'selected' : 'normal'"
+            >
+                <mat-icon *ngIf="!item.custumIcon">{{ item.icon }}</mat-icon>
+                <mat-icon *ngIf="item.custumIcon" [svgIcon]="item.icon"></mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <div *ngFor="let toolSelector of toolsControllerService.getGroup(i).bindedKeys">
+                    <app-sidebar-item [toolSelector]="toolSelector"></app-sidebar-item>
+                </div>
+            </mat-menu>
+        </div>
+        <app-sidebar-item *ngIf="item.groupSelector === GroupSelector.NotAGroup" [toolSelector]="item.toolSelector"></app-sidebar-item>
+    </div>
+</div>

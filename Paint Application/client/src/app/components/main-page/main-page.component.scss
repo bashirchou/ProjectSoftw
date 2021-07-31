@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    background: radial-gradient(circle, #1db1dd, #23d0d2);
+}
+
+.button {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.buttonContinuer {
+    visibility: hidden;
+}
+
+.team-name {
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+}
+
+.header-item {
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-item {
+    text-align: center;
+}
+
+.server-message {
+    justify-content: center;
+    width: 20%;
+    min-width: min-content;
+}
