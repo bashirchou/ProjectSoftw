@@ -1,0 +1,7 @@
+1. Copier le fichier où il y a  les schémas et coller le tout dans pgAdmin
+2. Copier et coller dans pgAdmin les “data”  afin d’insérer les tuples dans les tables
+3. Exécuter le code SQL sur pgAdmin. 
+4. Donner les données pertinentes dans la fonction connectionConfig qui se trouve dans le fichier database.service.ts.
+5. Maintenant avec le projet Angular, faites un “npm ci” dans le terminal dans le répertoire client et le répertoire serveur.
+6.  Ensuite, exécuter la commande “npm start” dans le dossier serveur et finalement dans le dossier client en roulant toujours le pgAdmin. 
+7. La configuration est terminée! L’application est supposée s'ouvrir adéquatement.

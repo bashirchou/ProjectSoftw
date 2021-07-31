@@ -1,0 +1,43 @@
+<div id="room">
+  <h1>Traitement</h1>
+
+  <div class="divider"></div>
+
+  <div class="container contentSelect">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="hotelSelect">Traitement</label>
+      </div>
+      <select class="custom-select" id="hotelSelect" (change)="updateSelectedAnimal($event.target.options.selectedIndex)">
+        <option *ngFor="let animal of animalsPK">{{ animal.noanimal }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table
+    id="ht"
+    align="center"
+    border="1"
+    width="1000"
+    class="table-striped table-hover"
+  >
+    <thead class="roomsheader">
+      <th class="contentCell">noAnimal</th>
+      <th class="contentCell">noTraitement</th>
+      <th class="contentCell">description</th>
+      <th class="contentCell">cout</th>
+      <th class="contentCell">nopersonnel</th>
+      <th class="contentCell">nofacture</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let traitement of traitements; let i = index">
+        <td class="contentCell">{{traitement.noanimal}}</td>
+        <td class="contentCell">{{ traitement.notraitement }}</td>
+        <td class="contentCell">{{ traitement.description }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeRoomType($event, i)">{{ traitement.cout}}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeRoomPrice($event, i)">{{ traitement.nopersonnel }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeRoomPrice($event, i)">{{ traitement.nofacture }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

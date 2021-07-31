@@ -1,0 +1,74 @@
+<div id="hotel">
+  <h1>Animal</h1>
+
+  <div class="divider"></div>
+
+  
+  <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+    <thead class="header">
+      <th class="contentCell">NUMÉRO ANIMAL</th>
+      <th class="contentCell">NUMÉRO CLINIQUE</th>
+      <th class="contentCell">NUMÉRO PROPIÉTAIRE</th>
+      <th class="contentCell">NOM</th>
+      <th class="contentCell">TYPE</th>
+      <th class="contentCell">TAILLE</th>
+      <th class="contentCell">ESPÈCE</th>
+      <th class="contentCell">POIDS</th>
+      <th class="contentCell">DESCRIPTION</th>
+      <th class="contentCell">DATE DE NAISSANCE</th>
+      <th class="contentCell">DATE D'INSCRIPTION</th>
+      <th class="contentCell">EST VACCINÉ?</th>
+      <th class="actionCell">ACTION</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animal of animals; let i = index">
+        <td class="contentCell" > {{ animal.noanimal}}</td>
+        <td class="contentCell"  >{{ animal.noclinique}}</td>
+        <td class="contentCell" >{{ animal.noproprietaire }}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeName($event, i)">{{ animal.name}}</td>
+        <td class="contentCell" contenteditable="true"(blur) = "changeType($event, i)" >{{ animal.type }}</td>
+        <td class="contentCell" contenteditable="true"(blur) = "changeSize($event, i)">{{animal.taille}}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeSpecies($event,i)">{{ animal.espece }}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeWeight($event,i)">{{ animal.poids }}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeDescription($event,i)">{{ animal.description }}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeDateBirth($event,i)">{{ animal.datenaissance }}</td>
+        <td class="contentCell" contenteditable="true" (blur) = "changeDateInscription($event,i)" >{{ animal.dateinscription }}</td>
+        <td class="contentCell" contenteditable="true"(blur) = "changeIsVaccinated($event,i)" >{{ animal.estvaccine }}</td>
+        <td class="actionCell">
+          <button type="button" class="submitbtn" (click)="updateAnimal(i)"><i class="fa fa-edit"></i></button>
+          <button type="button" class="deletebtn" (click)="deleteAnimal(animal.noanimal)"><i class="fa fa-trash-o"></i></button>
+        </td>
+        
+      </tr>
+
+
+      <tr class="blank_row">
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau numero " #newNoAnimal></td>
+         <!-- <td class="contentCell" contenteditable="true" placeholder="Nouveau clinique" #newNumberClinic> </td>  -->
+         <td><select (change)="updateSelectedClinic($event.target.options.selectedIndex)">
+          <option *ngFor="let clinique of cliniques"   #newNumberClinic>{{ clinique.noclinique }}</option>
+        </select></td>
+        <td>
+        <select (change)="updateSelectedOwner($event.target.options.selectedIndex)">
+          <option *ngFor="let proprietaire of proprietaires" #newNumberOwner>{{ proprietaire.noproprietaire }}</option>
+        </select> 
+      </td>
+     <!-- <td class="contentCell" contenteditable="true" placeholder="Nouveau proprietaire" #newNumberOwner> --> 
+      
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau nom" #newName></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau type" #newType></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau taille" #newSize></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveaau especes" #newSpecies></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau poids" #newWeight></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau description" #newDescription></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouvelle Date de Naissance" #newBirth></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouvelle Date d'inscription" #newInscription></td>
+        <td class="contentCell" contenteditable="true" placeholder="Nouveau Vaccine" #newVaccinated></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" (click)="insertAnimal()">+</button>
+
+</div>

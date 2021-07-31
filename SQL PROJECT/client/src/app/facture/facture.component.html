@@ -1,0 +1,47 @@
+<div id="room">
+  <h1>Facture</h1>
+
+  <div class="divider"></div>
+
+  <div class="container contentSelect">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="hotelSelect">Animal</label>
+      </div>
+      <select class="custom-select" id="hotelSelect" (change)="updateSelectedAnimal($event.target.options.selectedIndex)">
+        <option *ngFor="let animal of animalPK ">{{animal.noanimal }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table
+    id="ht"
+    align="center"
+    border="1"
+    width="1000"
+    class="table-striped table-hover"
+  >
+    <thead class="roomsheader">
+      <th class="contentCell">Numéro de Facture</th>
+      <th class="contentCell">Numéro de Proprietaire</th>
+      <th class="contentCell">Numéro de animal</th>
+      <th class="contentCell">Numéro de vétérinaire</th>
+      <th class="contentCell">date</th>
+      <th class="contentCell">prix</th>
+      <th class="contentCell">Est payé?</th>
+      <th class="contentCell">Mode de Paiement</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let facture of factures; let i = index">
+        <td class="contentCell" >{{ facture.nofacture }}</td>
+        <td class="contentCell">{{ facture.noproprietaire }}</td>
+        <td class="contentCell">{{facture.noanimal }}</td>
+        <td class="contentCell">{{ facture.noveterinaire }}</td>
+        <td class="contentCell" >{{ facture.date }}</td>
+        <td class="contentCell" >{{facture.prix }}</td>
+        <td class="contentCell" >{{ facture.estpaye }}</td>
+        <td class="contentCell" >{{ facture.modedepaiement }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
