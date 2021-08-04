@@ -1,0 +1,77 @@
+<div class="container">
+    <h1 class="header-item">{{ title }}</h1>
+    <!---<button class="button" routerLink="/editor">Ouvir Éditeur</button>--->
+    <form>
+        <div>Player 1</div>
+        <!---<input type="text" size="10" [(ngModel)]="firstPlayer" />-->
+        <div>Points: {{ firstPoints }}</div>
+        <br />
+        <div>Player 2</div>
+        <!--- <input type="text" size="10" [(ngModel)]="secondPlayer" />-->
+        <div>Points: {{ secondPoints }}</div>
+    </form>
+    <br />
+    <form>
+        <button>Rules</button>
+        <button type="button" (click)="this.reset()">Reset</button>
+        <button type="button" (click)="this.restart()">Restart</button>
+    </form>
+    <div class="winner">{{ this.outcome }}</div>
+    <div class="board">
+        <img src="assets/tic.jfif" height="600px" width="800px" />
+    </div>
+    <div class="x1" *ngIf="this.isVisible[0] && this.isPlayerOne[0]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x2" *ngIf="this.isVisible[1] && this.isPlayerOne[1]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x3" *ngIf="this.isVisible[2] && this.isPlayerOne[2]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x4" *ngIf="this.isVisible[3] && this.isPlayerOne[3]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x5" *ngIf="this.isVisible[4] && this.isPlayerOne[4]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x6" *ngIf="this.isVisible[5] && this.isPlayerOne[5]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x7" *ngIf="this.isVisible[6] && this.isPlayerOne[6]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x8" *ngIf="this.isVisible[7] && this.isPlayerOne[7]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x9" *ngIf="this.isVisible[8] && this.isPlayerOne[8]">
+        <img src="assets/x.png" height="150px" width="150px" />
+    </div>
+    <div class="x1" *ngIf="this.isVisible[0] && this.isPlayerOne[0] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x2" *ngIf="this.isVisible[1] && this.isPlayerOne[1] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x3" *ngIf="this.isVisible[2] && this.isPlayerOne[2] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x4" *ngIf="this.isVisible[3] && this.isPlayerOne[3] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x5" *ngIf="this.isVisible[4] && this.isPlayerOne[4] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x6" *ngIf="this.isVisible[5] && this.isPlayerOne[5] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x7" *ngIf="this.isVisible[6] && this.isPlayerOne[6] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x8" *ngIf="this.isVisible[7] && this.isPlayerOne[7] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+    <div class="x9" *ngIf="this.isVisible[8] && this.isPlayerOne[8] == false">
+        <img src="assets/circle.png" height="150px" width="150px" />
+    </div>
+</div>
