@@ -1,0 +1,111 @@
+
+#container{
+    border: 5px solid #45a29e; 
+    background-color: #1f2833;
+    width: 60vh;
+}
+
+#chatClosed {
+  background-color: #1f2833;
+  border: none;
+  border-radius: 2pt;
+  box-shadow: 0 0 0 1pt #04f1e6;
+  outline: none;
+  transition: .1s;
+  color: #04f1e6;
+}
+
+#DisplayZone {
+    height: 50vh;
+    border-width: 2px;
+    border:solid;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-wrap:break-word;
+    display: block;
+    border-radius: 16px;
+    margin-left: 0%;
+    scroll-behavior: smooth;
+    scroll-margin-inline: red;
+  }
+
+  .button-group {
+    background: #11161b;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #minimize {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size:14pt;
+    color: #04f1e6;
+  }
+
+  #popout {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size:14pt;
+    color: #04f1e6;
+  }
+
+ #sendButton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size:12pt;
+    color: #35cec6;
+  }
+
+  #sendButton:hover, #close:hover, #minimize:hover, #popout:hover, #chatClosed:hover {
+    opacity: 1;
+    background-color:#273342;
+  }
+
+  #close{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size:14pt;
+    color: #04f1e6;
+  }
+  
+  #messages{
+  background-color:rgb(253, 252, 252);
+  border:#35cec6;
+  width:90%;
+  height:50px;
+    font-size:14pt;
+  }
+  #inputs{
+    background: #11161b;
+    position:relative;
+    bottom: 0;
+  }
+    #allMessages{
+        margin-left:1%;
+        color: #35cec6;
+      }
+  
+  .chat {
+    display: flex;
+    flex-grow: 1;
+  }
+      
+
+  

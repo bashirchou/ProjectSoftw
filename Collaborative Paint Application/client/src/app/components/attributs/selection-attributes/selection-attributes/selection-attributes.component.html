@@ -1,0 +1,8 @@
+<div>
+  <button [style.color]="selectionIsEmpty()? '#45a29d67': '#35cec6'" mat-raised-button title="ApplyColor" type="button" (click)="apply()" [disabled]='selectionIsEmpty()'>
+    Apply Color
+  </button>
+  <button [style.color]="selectionIsEmpty()? '#45a29d67': '#35cec6'" mat-raised-button title="Delete" type="button" (click)="delete()" [disabled]='selectionIsEmpty()'>
+    Supprimer
+  </button>
+</div>

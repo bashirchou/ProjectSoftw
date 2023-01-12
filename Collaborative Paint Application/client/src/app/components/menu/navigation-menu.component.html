@@ -1,0 +1,30 @@
+<h1>Colorimage</h1>
+<div id="topper"></div>
+<div class="menu-container">
+
+  <div id="profile">
+    <app-profile></app-profile>
+  </div>
+
+  <div class="button-container">
+    <button (click)="openForm()" mat-raised-button>Créer un nouveau dessin</button>
+    <div></div>
+    <button (click)="openGallery()" mat-raised-button>Ouvrir la galerie</button>
+    <div></div>
+    <button (click)="openGuide()" mat-raised-button>Afficher le guide d'utilisation</button>
+    <div></div>
+    <button *ngIf="drawingInCache()" (click)="goDrawing()" mat-raised-button>Continuer un dessin</button>
+    <div></div>
+    <button mat-raised-button>Chatrooms</button>
+    <div></div>
+    <button id="disconnect" (click)="disconnect()" mat-raised-button>Log Out</button>
+    <div></div>
+  </div>
+    <div id="chat">
+      <app-chat></app-chat>
+    </div>
+  </div>
+  
+
+
+

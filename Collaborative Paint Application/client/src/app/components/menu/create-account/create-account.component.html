@@ -1,0 +1,35 @@
+<h1 class="menu-container">Colorimage</h1>
+<div id="topper"></div>
+<div class="menu-container">
+<div class="login-container">
+
+<div>
+  <mat-label>Choose your avatar:</mat-label>
+  <mat-select [(ngModel)]="avatarId">
+    <mat-option *ngFor="let avatar of avatars" [value]="avatar.value">
+      {{avatar.value}}
+    </mat-option>
+  </mat-select>
+</div>
+<div>
+  <label for="email" id = "email">Email:</label>
+  <input type ="text" [(ngModel)]="email" placeholder = "Enter email"> 
+</div>
+  <label for="username" id = "username">Username:</label>
+  <input type ="text" [(ngModel)]="username" placeholder = "Enter username">
+<div>
+</div>
+
+<div>
+  <label for="password" id = "password">Password:</label>
+  <input type ="text" [(ngModel)]="password" placeholder = "Enter password">
+</div>
+
+<div class="button-group">
+
+<button (click) = "createAccount()" id = createAccount mat-raised-button>Create new account</button>
+<button (click) = "goBackToLogin()" id = goBack mat-raised-button>Back</button>
+</div>
+
+</div>
+</div>

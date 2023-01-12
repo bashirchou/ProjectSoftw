@@ -1,0 +1,42 @@
+<div>
+  <button id="chatClosed" [hidden]="!noChat" (click)="openChat()">
+    <mat-icon>chat</mat-icon>
+  </button>
+</div>
+
+<div id= "container" [hidden] = "noChat">
+  <div class="button-group">
+
+    <button id = "minimize" (click)="minimize()">
+      <mat-icon>remove</mat-icon>
+    </button>
+
+    <button id = "popout" (click)="popout()">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+
+    <button (click) = close() id = "close">
+      <mat-icon>clear</mat-icon>
+    </button>
+
+  </div>
+  <div [hidden]="minimized">
+<div id='DisplayZone' #DisplayZone [scrollTop]="DisplayZone.scrollHeight">
+    <div *ngFor="let item of arrayMessage">
+      <div  id ='allMessages' *ngIf = "item.message">
+    <span> [ {{item.user}} ] : {{item.date}} : {{item.message}}</span>
+    </div>
+    </div>
+</div>
+<div id = "inputs">
+<input (keyup.enter)= sendMessage() type ="text" id = "messages" [(ngModel)] = "message" placeholder = "Enter message">
+  <button (click) = sendMessage() id = "sendButton">
+    <mat-icon>send</mat-icon>
+  </button>
+</div>
+
+</div>
+</div>
+
+
+

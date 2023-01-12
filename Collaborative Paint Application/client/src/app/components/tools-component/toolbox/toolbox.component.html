@@ -1,0 +1,47 @@
+<!-- code inspiré https://material.angular.io/components/button-toggle/examples -->
+<div class="toolbox">
+
+  <mat-button-toggle-group class='undoredoGroup'>
+    <mat-button-toggle (click)="undo()" [disabled]='!commandInvoker.undoIsAvailable() || drawingState.isBusy()'>
+      <mat-icon>undo</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle (click)="redo()" [disabled]='!commandInvoker.redoIsAvailable() || drawingState.isBusy()'>
+      <mat-icon>redo</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-button-toggle-group class='drawingGroup'>
+    <mat-button-toggle title="Sauvegarde" (click)="this.dialogOpener.openSaving()">
+      <mat-icon>save</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle title="Galerie de dessins" (click)="this.dialogOpener.openGallery()">
+      <mat-icon>collections</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle title="Guide d'utilisation" (click)="this.dialogOpener.openGuide()">
+      <mat-icon>help</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-button-toggle-group class='toolsGroup' [(value)]="this.drawingState.selectedTool"
+    [disabled]='drawingState.isBusy()'>
+    <mat-button-toggle  title="Outil Selection" (click)="selectionChosen()">
+      <mat-icon>fullscreen</mat-icon>
+    </mat-button-toggle>
+    
+  
+    <mat-divider></mat-divider>
+    <mat-button-toggle  title="Outil Crayon" (click)="pencilChosen()">
+      <mat-icon>create</mat-icon>
+    </mat-button-toggle>
+    <mat-divider></mat-divider>
+    <mat-button-toggle  title="Outil Rectangle" (click)="rectangleChosen()">
+      <mat-icon>check_box_outline_blank</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle title="Outil Ellipse" (click)="EllipseChosen()">
+      <mat-icon>lens</mat-icon>
+    </mat-button-toggle>
+   
+    <mat-divider></mat-divider>
+    
+  </mat-button-toggle-group>
+</div>

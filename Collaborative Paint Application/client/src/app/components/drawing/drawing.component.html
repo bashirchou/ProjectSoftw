@@ -1,0 +1,14 @@
+<app-drawing-canvas [drawingHeight]='this.drawingHeight' [drawingWidth]='this.drawingWidth' [xmlSVG]='this.xmlSVG'>
+</app-drawing-canvas>
+<svg #canvas [attr.viewBox]="this.viewBox" (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)"
+  (mousemove)="mouseMove($event)" (mouseleave)="mouseLeave($event)" (click)="mouseClick($event)"
+  (mousewheel)='onWheel($event)' (contextmenu)="onContextMenu($event)"
+  [ngStyle]="{width : this.drawingWidth, height : this.drawingHeight}"
+  [style.background-color]="this.colorServ.backgroundColor.getRGBString()">
+  <g id='selected' app-selected></g>
+  <g app-brush-texture></g>
+  <ng-container drawing-host></ng-container>
+  <g app-eraser></g>
+  <use href="#selected" pointer-events='none'></use>
+</svg>
+<!-- code tire de https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 -->

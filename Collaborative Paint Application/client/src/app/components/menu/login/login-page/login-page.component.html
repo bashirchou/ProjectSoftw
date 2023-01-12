@@ -1,0 +1,22 @@
+<h1 class="menu-container">Colorimage</h1>
+<div id="topper"></div>
+<div class="menu-container">
+<div class="login-container">
+<div>
+  <label for="username" id = "email">Email:</label>
+  <input type ="text" [(ngModel)] = "email" placeholder = "Enter email"> 
+</div>
+
+<div>
+  <label for="password" id = "password">Password:</label>
+  <input type ="text"  [(ngModel)] = "password" placeholder = "Enter password">
+</div>
+
+<div class="button-group">
+  <!--A changer-->
+<button (click) = "goMenu()" id = goMenu mat-raised-button>Login</button>
+<button (click) = "createNewAccount()" id = createAccount mat-raised-button>Create new account</button>
+</div>
+
+</div>
+</div>

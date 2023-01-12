@@ -1,0 +1,25 @@
+<div>
+  <p>Couleur</p>
+  <app-color-tool></app-color-tool>
+</div>
+
+<div *ngIf="selectedToolType === toolType.pencil">
+  <p>Attributs du crayon</p>
+  <app-pencil-attributes></app-pencil-attributes>
+</div>
+
+<div *ngIf="selectedToolType === toolType.rectangle">
+  <p>Attributs des rectangles</p>
+  <app-rectangle-attributes></app-rectangle-attributes>
+</div>
+
+<div *ngIf="selectedToolType === toolType.ellipse">
+  <p>Attributs des ellipses</p>
+  <app-ellipse-attributes></app-ellipse-attributes>
+</div>
+
+<div *ngIf="selectedToolType === toolType.selection">
+  <p>Fonctions de sélection</p>
+  <app-selection-attributes></app-selection-attributes>
+</div>
+
